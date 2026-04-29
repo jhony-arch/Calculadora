@@ -1,4 +1,4 @@
-print("--- Calculadora Prime ---")
+print("--- Calculadora Prime ---")   #Juanca Gay 
 print("Jonathan - Juan Carlos - Bryan")
 
 probar = True
