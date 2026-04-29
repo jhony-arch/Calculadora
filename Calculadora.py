@@ -2,10 +2,7 @@ print("--- Calculadora Prime ---")
 print("Jonathan - Juan Carlos - Bryan")
 
 
-lpDerecho = []
-posDerecho = []
-lpIzquierdo = []
-posIzquierdo = []
+
 # Esto suma los dos numeros del usuario
 def suma(x, y):
     return x + y
@@ -40,8 +37,8 @@ def construir(argumento):
         valor2 = argumento[v1+1:v2]            #separa los valores
         valor3 = argumento[v2+1:]
 
-        valor1 = int(valor1)
-        valor2 = int(valor2)            #convierte los numeros a enteros 
+        valor1 = float(valor1)
+        valor2 = float(valor2)            #convierte los numeros a enteros 
 
         try:
             if valor3 == "+":
@@ -51,25 +48,25 @@ def construir(argumento):
             elif valor3 == "*":
                 resultado = multi(valor1, valor2)
             elif valor3 == "/":
-                resultado = resta(valor1, valor2)         #dependiendo del operador hace la operacion
+                resultado = divi(valor1, valor2)         #dependiendo del operador hace la operacion
             elif valor3 == "DIV":
-                resultado = resta(valor1, valor2)
+                resultado = DIVI(valor1, valor2)
             elif valor3 == "%":
-                resultado = resta(valor1, valor2)
-            elif valor3 == "sqr":
-                resultado = resta(valor1, valor2)
+                resultado = resi(valor1, valor2)
 
             argumento = resultado      #guarda el resultado 
             
             return argumento       #devuelve el resultado
+        
         except:
-
-            print("Error 4")     # Si ocurre cualquier error (ej: división por 0)
+            print("Error 4")
+            return False     # Si ocurre cualquier error (ej: división por 0)
     
 
 
     else: 
-        print("Error 3")        # Si el formato está mal escrito
+        print("Error 3") 
+        return False       # Si el formato está mal escrito
 
 
 def verificar(calculo):
@@ -77,6 +74,10 @@ def verificar(calculo):
     marca2 = 1
     n = 0
     probar = True
+    lpDerecho = []
+    posDerecho = []
+    lpIzquierdo = []
+    posIzquierdo = []
 
     for x in range(len(calculo)):    #recorre todo el calculo 
 
@@ -100,7 +101,7 @@ def verificar(calculo):
         
             
         if probar:
-            
+            valor = calculo
             while "(" in calculo:             # Mientras haya paréntesis
 
                 inicio = calculo.rfind("(")       # Busca el último "("
