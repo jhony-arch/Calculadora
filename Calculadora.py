@@ -6,7 +6,7 @@ lpDerecho = []
 posDerecho = []
 lpIzquierdo = []
 posIzquierdo = []
-
+# Esto suma los dos numeros del usuario
 def suma(x, y):
     return x + y
 
