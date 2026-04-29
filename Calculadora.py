@@ -43,24 +43,28 @@ def construir(argumento):
         valor1 = int(valor1)
         valor2 = int(valor2)
 
-        if valor3 == "+":
-            resultado = suma(valor1, valor2)
-        elif valor3 == "-":
-            resultado = resta(valor1, valor2)
-        elif valor3 == "*":
-            resultado = multi(valor1, valor2)
-        elif valor3 == "/":
-            resultado = resta(valor1, valor2)
-        elif valor3 == "DIV":
-            resultado = resta(valor1, valor2)
-        elif valor3 == "%":
-            resultado = resta(valor1, valor2)
-        elif valor3 == "sqr":
-            resultado = resta(valor1, valor2)
+        try:
+            if valor3 == "+":
+                resultado = suma(valor1, valor2)
+            elif valor3 == "-":
+                resultado = resta(valor1, valor2)
+            elif valor3 == "*":
+                resultado = multi(valor1, valor2)
+            elif valor3 == "/":
+                resultado = resta(valor1, valor2)
+            elif valor3 == "DIV":
+                resultado = resta(valor1, valor2)
+            elif valor3 == "%":
+                resultado = resta(valor1, valor2)
+            elif valor3 == "sqr":
+                resultado = resta(valor1, valor2)
 
-        argumento = resultado
-        
-        return argumento
+            argumento = resultado
+            
+            return argumento
+        except:
+
+            print("Error 4")
     
 
 
@@ -103,13 +107,11 @@ def verificar(calculo):
                 fin = calculo.find(")", inicio)
 
                 arg = calculo[inicio+1:fin]
-                print(arg)
 
                 valor = str(construir(arg))
                 calculo = calculo[:inicio] + valor + calculo[fin+1:]
-                print(calculo)
-
                 n +=1
+            print(valor)
     else:
         print("Error 1")
         probar = False
