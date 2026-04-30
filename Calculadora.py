@@ -15,10 +15,18 @@ def multi(x, y):
     return x * y           #devuelve la multiplicacion
  
 def divi(x, y):
-    return x / y           #devuelve la division normal
+    if y == 0:
+        print("ERROR! División entre cero")
+        return False
+    else:
+        return x / y           #devuelve la division normal
  
 def DIVI(x, y):
-    return x // y          #devuelve la division entera (sin decimales)
+    if y == 0:
+        print("ERROR! División entre cero")
+        return False
+    else:
+        return x // y          #devuelve la division entera (sin decimales)
  
 def resi(x, y):
     return x % y           #devuelve el residuo (lo que sobra)
@@ -35,6 +43,15 @@ def coseno(x):
 # Calcula la tangente en grados
 def tangente(x):
     return round(math.tan(math.radians(x)), 10)
+
+def raizcuadrada(x):
+    if x < 0:
+        print("ERROR! Raiz cuadrada negativa")
+        return False
+    return math.sqrt(x)     #devuelve la raiz cuadrada
+
+def cuadrado(x):
+    return x ** 2       #devuelve x elevado a la potencia de 2 
  
 # Calcula el factorial de un entero natural
 def factorial(x):
@@ -54,6 +71,8 @@ def construir(argumento):
     for s in range(len(argumento)):
         if argumento[s] == " ":          #cuenta cuantos espacios hay en la operación
             a +=1
+    if a == 0:
+        return float(argumento)       #si no hay espacios, devuelve el numero convertido a float
     if a % 2 == 0:
         v1 = argumento.find(" ")
         v2 = argumento.find(" ", v1 + 1)       #encuentra posiciones de los espacios 
@@ -83,7 +102,7 @@ def construir(argumento):
             return argumento       #devuelve el resultado
         
         except:
-            print("Error 4")
+            print("ERROR! Expresión no válida")
             return False     # Si ocurre cualquier error (ej: división por 0)
  
     # Operaciones de un solo operando: sen, cos, tan, fact!
@@ -101,18 +120,22 @@ def construir(argumento):
                 resultado = tangente(num)
             elif operador == "fact!":
                 resultado = factorial(num)
+            elif operador == "sqroot":
+                resultado = raizcuadrada(num)
+            elif operador == "sqr":
+                resultado = cuadrado(num)
             else:
-                print("Error 3")
+                print("ERROR expresión no válida")
                 return False
             return resultado
         except:
-            print("Error 3")
+            print("ERROR! Expresión no válida")
             return False
     
  
  
     else: 
-        print("Error 3") 
+        print("ERROR! Expresión no válida")
         return False       # Si el formato está mal escrito
  
  
@@ -143,7 +166,7 @@ def verificar(calculo):
             for k in posDerecho:
                 if posIzquierdo[x] > k:
                     probar = False
-                    print("Error 2")
+                    print("ERROR! Expresión no válida")
                     break
         
             
@@ -156,12 +179,15 @@ def verificar(calculo):
  
                 arg = calculo[inicio+1:fin]       # Extrae lo que está dentro del paréntesis
  
-                valor = str(construir(arg))       # Resuelve esa parte
+                valor = str(construir(arg))
+                if valor == "False":
+                    probar = False
+                    break       # Resuelve esa parte
                 calculo = calculo[:inicio] + valor + calculo[fin+1:]   # Reemplaza el paréntesis con el resultado
                 n +=1
             print(valor)          # Muestra resultado final
     else:
-        print("Error 1")    # Paréntesis desiguales
+        print("ERROR! expresión no válida")    # Paréntesis desiguales
         probar = False
  
  
