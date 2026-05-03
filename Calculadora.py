@@ -1,9 +1,10 @@
-print("--- Calculadora Prime ---")  
-print("Jonathan - Juan Carlos - Bryan")
- 
 import math
- 
- 
+
+print("Bienvenido!!!!")
+print("Nombre de la calculadora: Calculadora Prime")
+print("Calculadora hecha por: Jonathan Campos - Juan Carlos Montenegro - Bryan Gomez")
+
+
 # Esto suma los dos numeros del usuario
 def suma(x, y):
     return x + y
@@ -84,10 +85,13 @@ def construir(argumento):
         valor1 = argumento[:v1]
         valor2 = argumento[v1+1:v2]            #separa los valores
         valor3 = argumento[v2+1:]
- 
-        valor1 = float(valor1)
-        valor2 = float(valor2)            #convierte los numeros a valores con decimales
- 
+
+        try:
+            valor1 = float(valor1)
+            valor2 = float(valor2)            #convierte los numeros a valores con decimales
+        except:
+            print("Error! Expresion Invalida")
+            return False
         try:
             if valor3 == "+":
                 resultado = suma(valor1, valor2)
@@ -198,7 +202,8 @@ def verificar(calculo):
                     break       # Resuelve esa parte
                 calculo = calculo[:inicio] + valor + calculo[fin+1:]   # Reemplaza el paréntesis con el resultado
                 n +=1
-            print(valor)          # Muestra resultado final
+            if valor != "False":
+                print(valor)          # Muestra resultado final
     else:
         print("ERROR! expresión no válida")    # Paréntesis desiguales
         probar = False
