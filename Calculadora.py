@@ -24,7 +24,6 @@ def resi(x, y):
 
 
 
-
 def construir(argumento):
     a = 0
     for s in range(len(argumento)):
