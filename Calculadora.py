@@ -71,8 +71,13 @@ def construir(argumento):
     for s in range(len(argumento)):
         if argumento[s] == " ":          #cuenta cuantos espacios hay en la operación
             a +=1
-    if a == 0:
-        return float(argumento)       #si no hay espacios, devuelve el numero convertido a float
+    try: 
+        if a == 0:
+            return float(argumento)       #si no hay espacios, devuelve el numero convertido a float
+    except:
+        print("Error! Este valor no se puede expresar como numero")
+        return False
+    
     if a % 2 == 0:
         v1 = argumento.find(" ")
         v2 = argumento.find(" ", v1 + 1)       #encuentra posiciones de los espacios 
@@ -81,7 +86,7 @@ def construir(argumento):
         valor3 = argumento[v2+1:]
  
         valor1 = float(valor1)
-        valor2 = float(valor2)            #convierte los numeros a enteros 
+        valor2 = float(valor2)            #convierte los numeros a valores con decimales
  
         try:
             if valor3 == "+":
@@ -136,7 +141,7 @@ def construir(argumento):
  
     else: 
         print("ERROR! Expresión no válida")
-        return False       # Si el formato está mal escrito
+        return False       # Si el formato de espacios está mal escrito
  
  
 def verificar(calculo):
@@ -148,8 +153,9 @@ def verificar(calculo):
     posDerecho = []
     lpIzquierdo = []
     posIzquierdo = []
+    espacios = 0
  
-    for x in range(len(calculo)):    #recorre todo el calculo 
+    for x in range(len(calculo)):    #recorre todo el texto ingresado
  
         if calculo[x] == "(":                           # Guarda paréntesis izquierdos "("
             lpIzquierdo.append(calculo[x] + str(marca))
@@ -160,6 +166,9 @@ def verificar(calculo):
             lpDerecho.append(calculo[x] + str(marca2))
             marca2 +=1
             posDerecho.append(x)
+        
+        if calculo[x] == " ":
+            espacios +=1
  
     if len(lpIzquierdo) == len(lpDerecho):            # Verifica que haya la misma cantidad de paréntesis
         for x in range(len(lpIzquierdo)):          # Verifica que estén bien ordenados
@@ -168,7 +177,11 @@ def verificar(calculo):
                     probar = False
                     print("ERROR! Expresión no válida")
                     break
-        
+        if espacios > 0:
+            if len(lpIzquierdo) == 0 or len(lpDerecho) == 0:
+                print("Error! Expresion no valida")
+                probar = False
+    
             
         if probar:
             valor = calculo
@@ -198,11 +211,11 @@ def inicio():
     while True:
         calculo = str(input("Ingrese calculo a operar: "))  # Pide al usuario una operación
         if calculo == "quit":
-            print("saliendo...")
-            print("gracias por usar nuestra calculadora")
+            print("Saliendo...")
+            print("Gracias por usar nuestra calculadora.")
             break
         if verificar(calculo):              # Verifica y ejecuta
-            print("Aqui aparecera el calculo")
+            print("_________________________")
  
  
 inicio()
